@@ -1,0 +1,34 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+</head>
+<body>
+<div id="header">
+    <span class="logo">Bookmarks</span>
+    {% if request.user.is_authenticated %}
+    <ul class="menu">
+        <li {% if section == "dashboard" %} class="selected" {%endif%}><a href="{% url 'dashboard' %}">Моя информационная
+            панель</a></li>
+        <li {% if section == "images" %} class="selected" {%endif%}><a href="#">Изображения</a></li>
+        <li {% if section == "people" %} class="selected" {%endif%}><a href="#">Пользователи</a></li>
+    </ul>
+    {% endif %}
+    <span class="user">
+        {% if request.user.is_authenticated %}
+        Привет {{request.user.first_name|default:request.user.username}},
+        <a href="{% url 'logout' %}">Выход</a>
+        {% else %}
+        <a href="{% url 'login' %}">Вход</a>
+        {% endif %}
+    </span>
+</div>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>

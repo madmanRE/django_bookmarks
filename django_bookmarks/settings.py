@@ -24,7 +24,7 @@ SECRET_KEY = "django-insecure-h^-n4n8nf!s5!rr34qpo#j9sv(!fk=*b(hh#3dx$+ok&72347f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-bookmarks.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "social_django",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
@@ -61,6 +63,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "social_django.context_processors.backends",
+                "social_django.context_processors.login_redirect",
             ],
         },
     },
@@ -129,4 +133,29 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.vk.VKOAuth2',
+    'social_core.backends.github.GithubOAuth2',
+]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '279112470741-d2no0lv8m21oa3h240b8637bfgbmbdva.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = '51689741'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'YoRs0BVO2ZtlLCzjvHDQ'
+
+SOCIAL_AUTH_GITHUB_KEY = '057599a02c935f6ea756'
+SOCIAL_AUTH_GITHUB_SECRET = '742236f6462b195c523a9bf605a9a084df645f9a'
+
+SOCIAL_AUTH_PIPELINE = [
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'account.authentication.create_profile',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
 ]

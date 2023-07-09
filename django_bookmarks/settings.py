@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-h^-n4n8nf!s5!rr34qpo#j9sv(!fk=*b(hh#3dx$+ok&72347f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-bookmarks.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ["django-bookmarks.com", "localhost", "127.0.0.1"]
 
 # Application definition
 
@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "ru"
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = "Europe/Moscow"
 
 USE_I18N = True
 
@@ -130,57 +130,60 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_REDIRECT_URL = 'dashboard'
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = "dashboard"
+LOGIN_URL = "login"
+LOGOUT_URL = "logout"
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'account.authentication.EmailAuthBackend',
-    'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.vk.VKOAuth2',
-    'social_core.backends.github.GithubOAuth2',
+    "django.contrib.auth.backends.ModelBackend",
+    "account.authentication.EmailAuthBackend",
+    "social_core.backends.google.GoogleOAuth2",
+    "social_core.backends.vk.VKOAuth2",
+    "social_core.backends.github.GithubOAuth2",
 ]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '279112470741-d2no0lv8m21oa3h240b8637bfgbmbdva.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = (
+    "279112470741-d2no0lv8m21oa3h240b8637bfgbmbdva.apps.googleusercontent.com"
+)
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "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"
 
-SOCIAL_AUTH_VK_OAUTH2_KEY = '51689741'
-SOCIAL_AUTH_VK_OAUTH2_SECRET = 'YoRs0BVO2ZtlLCzjvHDQ'
+SOCIAL_AUTH_VK_OAUTH2_KEY = "51689741"
+SOCIAL_AUTH_VK_OAUTH2_SECRET = "YoRs0BVO2ZtlLCzjvHDQ"
 
-SOCIAL_AUTH_GITHUB_KEY = '057599a02c935f6ea756'
-SOCIAL_AUTH_GITHUB_SECRET = '742236f6462b195c523a9bf605a9a084df645f9a'
+SOCIAL_AUTH_GITHUB_KEY = "057599a02c935f6ea756"
+SOCIAL_AUTH_GITHUB_SECRET = "742236f6462b195c523a9bf605a9a084df645f9a"
 
 SOCIAL_AUTH_PIPELINE = [
-    'social_core.pipeline.social_auth.social_details',
-    'social_core.pipeline.social_auth.social_uid',
-    'social_core.pipeline.social_auth.auth_allowed',
-    'social_core.pipeline.social_auth.social_user',
-    'social_core.pipeline.user.get_username',
-    'social_core.pipeline.user.create_user',
-    'account.authentication.create_profile',
-    'social_core.pipeline.social_auth.associate_user',
-    'social_core.pipeline.social_auth.load_extra_data',
-    'social_core.pipeline.user.user_details',
+    "social_core.pipeline.social_auth.social_details",
+    "social_core.pipeline.social_auth.social_uid",
+    "social_core.pipeline.social_auth.auth_allowed",
+    "social_core.pipeline.social_auth.social_user",
+    "social_core.pipeline.user.get_username",
+    "social_core.pipeline.user.create_user",
+    "account.authentication.create_profile",
+    "social_core.pipeline.social_auth.associate_user",
+    "social_core.pipeline.social_auth.load_extra_data",
+    "social_core.pipeline.user.user_details",
 ]
 
 
 if DEBUG:
     import mimetypes
-    mimetypes.add_type('application/javascript', '.js', True)
-    mimetypes.add_type('text/css', '.css', True)
+
+    mimetypes.add_type("application/javascript", ".js", True)
+    mimetypes.add_type("text/css", ".css", True)
 
 
 ABSOLUTE_URL_OVERRIDES = {
-    'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username])
+    "auth.user": lambda u: reverse_lazy("user_detail", args=[u.username])
 }
 
 INTERNAL_IPS = [
-    '127.0.0.1',
+    "127.0.0.1",
 ]
 
-REDIS_HOST = 'localhost'
+REDIS_HOST = "localhost"
 REDIS_PORT = 6379
 REDIS_DB = 0

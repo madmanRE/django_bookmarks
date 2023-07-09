@@ -18,31 +18,33 @@ class UserRegistrationForm(forms.ModelForm):
 
     def clean_password2(self):
         cd = self.cleaned_data
-        if cd['password'] != cd['password2']:
-            raise forms.ValidationError('Пароли не совпадают')
-        return cd['password2']
+        if cd["password"] != cd["password2"]:
+            raise forms.ValidationError("Пароли не совпадают")
+        return cd["password2"]
 
     def clean_email(self):
-        data = self.cleaned_data['email']
+        data = self.cleaned_data["email"]
         if User.objects.filter(email=data).exists():
-            raise forms.ValidationError('Данный адерс электронной почты уже используется')
+            raise forms.ValidationError(
+                "Данный адерс электронной почты уже используется"
+            )
         return data
 
 
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email']
+        fields = ["first_name", "last_name", "email"]
 
     def clean_email(self):
-        data = self.cleaned_data['email']
+        data = self.cleaned_data["email"]
         qs = User.objects.exclude(id=self.instance.id).filter(email=data)
         if qs.exists():
-            raise forms.ValidationError('Адрес электронной почты уже используется')
+            raise forms.ValidationError("Адрес электронной почты уже используется")
         return data
 
 
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['date_of_birth', 'photo']
+        fields = ["date_of_birth", "photo"]
